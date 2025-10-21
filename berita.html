@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Kegiatan - SMPIT Yasir</title>
+    <link rel="icon" type="image/png" href="yasir-logo-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d8a6d;
+            --secondary: #1a73e8;
+            --dark: #1a1a2e;
+            --background: #f8f9fa;
+            --gradient: linear-gradient(135deg, #0d8a6d 0%, #1a73e8 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--background);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .back-button {
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section Berita */
+        .news-hero {
+            background: var(--gradient);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .news-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .news-hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Kategori */
+        .news-filter {
+            background: white;
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content Layout - Sama seperti landing page */
+        .news-prestasi {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        /* Grid Berita Utama */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-meta {
+            display: flex;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .news-meta span {
+            margin-right: 15px;
+        }
+
+        .news-content h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Sidebar Berita Populer */
+        .side-news {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-news-item {
+            display: flex;
+            gap: 15px;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            padding: 15px;
+        }
+
+        .side-news-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .side-news-image {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .side-news-item:hover .side-news-image {
+            transform: scale(1.1);
+        }
+
+        .side-news-content {
+            flex: 1;
+        }
+
+        .side-news-date {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .side-news-content h4 {
+            font-size: 16px;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        /* Prestasi Section */
+        .prestasi-section {
+            background: linear-gradient(135deg, #e6f7f3 0%, #e8f0fe 100%);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+        }
+
+        .prestasi-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            color: var(--dark);
+        }
+
+        .prestasi-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .prestasi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .prestasi-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            padding: 15px;
+            background: white;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .prestasi-item:hover {
+            transform: translateX(5px);
+        }
+
+        .prestasi-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .prestasi-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .prestasi-text p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-info i {
+            margin-top: 3px;
+            color: var(--primary);
+        }
+
+        .footer-links h3, .footer-programs h3, .footer-newsletter h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after, .footer-programs h3::after, .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links ul, .footer-programs ul {
+            list-style: none;
+        }
+
+        .footer-links ul li, .footer-programs ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a, .footer-programs ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover, .footer-programs ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .news-prestasi {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .news-hero h1 {
+                font-size: 36px;
+            }
+            
+            .news-hero p {
+                font-size: 18px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .news-hero h1 {
+                font-size: 28px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-news-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .side-news-image {
+                width: 100%;
+                height: 120px;
+            }
+            
+            .prestasi-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="yasir-logo-removebg-preview.png" alt="Logo SMPIT Yasir" class="logo-image">
+                <div class="logo-text">SMPIT YASIR</div>
+            </div>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section Berita -->
+    <section class="news-hero">
+        <div class="container">
+            <h1>Berita & Kegiatan</h1>
+            <p>Ikuti perkembangan terbaru seputar kegiatan dan prestasi SMPIT Yasir</p>
+        </div>
+    </section>
+
+    <!-- Filter Kategori -->
+    <section class="news-filter">
+        <div class="container filter-container">
+            <button class="filter-btn active" data-filter="all">Semua Berita</button>
+            <button class="filter-btn" data-filter="prestasi">Prestasi</button>
+            <button class="filter-btn" data-filter="berita">Berita Sekolah</button>
+        </div>
+    </section>
+
+    <!-- Main Content - Layout sama seperti landing page -->
+    <section class="container">
+        <div class="news-prestasi">
+            <!-- Berita Utama -->
+            <div class="main-content">
+                <div class="news-grid">
+                    <!-- Berita 1 -->
+                    <div class="news-card" data-category="prestasi">
+                        <div style="position: relative;">
+                            <img src="image-prestasi-hadang.jpg" alt="prestasi hadang" class="news-image">
+                            <span class="news-badge">Prestasi</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i>19 juli 2024</span>
+                            </div>
+                            <h3>Meraih Juara 3 dalam kompetisi hadang</h3>
+                            <p>Alhamdulilah prestsi lagi? juara 3 lomba hadang.</p>
+                        </div>
+                    </div>
+
+                    <!-- Berita 2 -->
+                    <div class="news-card" data-category="prestasi">
+                        <div style="position: relative;">
+                            <img src="image-prestasi.jpg" alt="Juara Tahfidz" class="news-image">
+                            <span class="news-badge">Prestasi</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> 2 Agustus 2024</span>
+                            </div>
+                            <h3>Juara 2 Tahfidz Juz 30 pada Festival Ummi 2024</h3>
+                            <p>Siswi bernama NAURA ZALFA DEANOVA meraih juara 2 tahfidz juz 30 pada festival ummi tingkat kota Tangerang 2024.</p>
+                        </div>
+                    </div>
+
+                    <!-- Berita 3 -->
+                    <div class="news-card" data-category="berita">
+                        <div style="position: relative;">
+                            <img src="image pts.jpg" alt="PTS Projek" class="news-image">
+                            <span class="news-badge">Berita</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> 25 agustus-2 september 2025</span>
+                            </div>
+                            <h3>Cegah dan Lawan Perundungan - PTS Projek Ganjil 2025</h3>
+                            <p>Kegiatan PTS projek dengan tema pencegahan perundungan di lingkungan sekolah berlangsung dari 25 Agustus sampai 2 September 2025.</p>
+                        </div>
+                    </div>
+
+                    <!-- Berita 4 -->
+                    <div class="news-card" data-category="prestasi">
+                        <div style="position: relative;">
+                            <img src="image-prestasi-tahfidz.jpg" alt="Juara MHQ" class="news-image">
+                            <span class="news-badge">Prestasi</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> 28 Mei 2024</span>
+                            </div>
+                            <h3>Juara 3 MHQ Juz 30 Festival Pelajar Pancasila</h3>
+                            <p>Siswi SMPIT Yasir meraih juara 3 Musabaqah Hifdzil Qur'an juz 30 pada festival pelajar pancasila SMK Al Mu'in Kota Tangerang.</p>
+                        </div>
+                    </div>
+
+                    <!-- Berita 5 -->
+                    <div class="news-card" data-category="berita">
+                        <div style="position: relative;">
+                            <img src="image khatmul qur an.jpg" alt="Wisuda Tahfidz" class="news-image">
+                            <span class="news-badge">Berita</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> 27 Mei 2025</span>
+                            </div>
+                            <h3>khatmul Qur'an & imtihan ummi-menapaki keindahan ayat demi ayat</h3>
+                            <p>Acara wisuda tahfidz bagi siswa & siswi yang telah menyelesaikan hafalan juz 29 & 30. Sebanyak 25 siswa diwisuda dalam acara ini.</p>
+                        </div>
+                    </div>
+
+                    <!-- Berita 6 -->
+                    <div class="news-card" data-category="berita">
+                        <div style="position: relative;">
+                            <img src="gambar outing class.jpg" alt="Outing Class" class="news-image">
+                            <span class="news-badge">Berita</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> 23 november 2024</span>
+                            </div>
+                            <h3>Outing Class ke pelita desa ciseeng parung bogor</h3>
+                            <p>Kegiatan pembelajaran di luar kelas untuk memperkaya pengalaman belajar siswa dengan mengunjungi desa ciseeng parung bogor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Prestasi -->
+                <div class="prestasi-section">
+                    <h3 class="prestasi-title">Prestasi Terbaru</h3>
+                    <div class="prestasi-list">
+                        <div class="prestasi-item" onclick="scrollToArticle(0)">
+                            <img src="image-prestasi.jpg" alt="Juara Tahfidz" class="prestasi-image">
+                            <div class="prestasi-text">
+                                <h4>Juara 2 Tahfidz Festival Ummi</h4>
+                                <p>Siswi zalfa deanova meraih juara 2 pada festival ummi tingkat kota Tangerang</p>
+                            </div>
+                        </div>
+                        <div class="prestasi-item" onclick="scrollToArticle(3)">
+                            <img src="image-prestasi-tahfidz.jpg" alt="Juara MHQ" class="prestasi-image">
+                            <div class="prestasi-text">
+                                <h4>Juara 3 MHQ Juz 30</h4>
+                                <p>Meraih juara 3 Musabaqah Hifdzil Qur'an festival pelajar pancasila</p>
+                            </div>
+                        </div>
+                        <div class="prestasi-item" onclick="scrollToArticle(6)">
+                            <img src="image futsal.jpg.jpg" alt="Juara Futsal" class="prestasi-image">
+                            <div class="prestasi-text">
+                                <h4>Juara 3 Tournament Futsal</h4>
+                                <p>Tim futsal meraih peringkat 3 kompetisi antar sekolah</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Berita Populer -->
+            <div class="side-news">
+                <div class="side-news-item" onclick="scrollToArticle(0)">
+                    <img src="image spmb.jpg" alt="PPDB" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">15 Mei 2025</div>
+                        <h4>Pembukaan PPDB Tahun Ajaran 2026/2027</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" onclick="scrollToArticle(1)">
+                    <img src="image-prestasi.jpg" alt="Juara Tahfidz" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">2 Agustus 2024</div>
+                        <h4>Juara 2 Tahfidz Juz 30 Festival Ummi</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" onclick="scrollToArticle(4)">
+                    <img src="image-prestasi-futsal.jpg.jpg" alt="image-prestasi-futsal.jpg.jpg" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">18 desember 2024</div>
+                        <h4>juara 3 Tournament futsal antar sekolah</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" onclick="scrollToArticle(2)">
+                    <img src="image pts.jpg" alt="PTS Projek" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">25 Agustus 2025</div>
+                        <h4>Cegah dan Lawan Perundungan - PTS Projek</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" onclick="scrollToArticle(5)">
+                    <img src="gambar outing class.jpg" alt="Outing Class" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">23 november 2024</div>
+                        <h4>Outing Class ke Desa ciseeng parung bogor</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" onclick="scrollToArticle(3)">
+                    <img src="image-prestasi-tahfidz.jpg" alt="Juara MHQ" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">28 Mei 2024</div>
+                        <h4>Juara 3 MHQ Juz 30 Festival Pelajar</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">SMPIT YASIR</div>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Maulana Hasanudin No.67, RT.002/RW.003, Cipondoh Makmur, Kec. Tangerang, Kota Tangerang, Banten 15148</p>
+                    <p><i class="fas fa-phone"></i> (+62) 8158-7077-89 </p>
+                    <p><i class="fas fa-envelope"></i> info@smpityasir.sch.id</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Menu Cepat</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.html#tentang">Tentang Kami</a></li>
+                        <li><a href="index.html#ekstrakurikuler">Ekstrakurikuler</a></li>
+                        <li><a href="index.html#kegiatan">Kegiatan</a></li>
+                        <li><a href="index.html#amaliyah">Amaliyah</a></li>
+                    </ul>
+                </div>
+                <div class="footer-programs">
+                    <h3>Program</h3>
+                    <ul>
+                        <li><a href="#">PPDB 2025</a></li>
+                        <li><a href="#">Program Tahfidz</a></li>
+                        <li><a href="#">Beasiswa Prestasi</a></li>
+                        <li><a href="#">Kelas Unggulan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Dapatkan informasi terbaru tentang kegiatan SMPIT Yasir</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Anda" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 SMPIT Yasir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter Berita
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                newsCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Scroll to Article
+        function scrollToArticle(index) {
+            const articles = document.querySelectorAll('.news-card');
+            if (articles[index]) {
+                articles[index].scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Add highlight effect
+                articles[index].style.boxShadow = '0 0 0 3px var(--primary)';
+                setTimeout(() => {
+                    articles[index].style.boxShadow = '';
+                }, 2000);
+            }
+        }
+
+        // Newsletter Form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Terima kasih! Anda telah berlangganan newsletter SMPIT Yasir.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
