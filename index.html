@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMPIT Yasir - Sekolah Menengah Pertama Islam Terpadu</title>
+    <link rel="icon" type="image/png" href="yasir-logo-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d8a6d;
+            --secondary: #1a73e8;
+            --dark: #1a1a2e;
+            --background: #f8f9fa;
+            --gradient: linear-gradient(135deg, #0d8a6d 0%, #1a73e8 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow);
+            background-color: white;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 32px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Berita & Prestasi */
+        .news-prestasi {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .main-news {
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 350px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-meta {
+            display: flex;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .news-meta span {
+            margin-right: 15px;
+        }
+
+        .news-content h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            color: var(--dark);
+        }
+
+        .prestasi-section {
+            background: linear-gradient(135deg, #e6f7f3 0%, #e8f0fe 100%);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+        }
+
+        .prestasi-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            color: var(--dark);
+        }
+
+        .prestasi-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .prestasi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .prestasi-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .prestasi-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .prestasi-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .prestasi-text p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .side-news {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-news-item {
+            display: flex;
+            gap: 15px;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .side-news-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .side-news-image {
+            width: 100px;
+            height: 80px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .side-news-item:hover .side-news-image {
+            transform: scale(1.1);
+        }
+
+        .side-news-content {
+            padding: 10px 10px 10px 0;
+            flex: 1;
+        }
+
+        .side-news-date {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .side-news-content h4 {
+            font-size: 16px;
+            color: var(--dark);
+        }
+
+        /* Profil Sekolah */
+        .profil-sekolah {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profil-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .profil-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .profil-content p {
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .stat-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .slider-container {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .slide:hover .slide-overlay {
+            opacity: 1;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--primary);
+        }
+
+        /* Ekstrakurikuler */
+        .ekstrakurikuler-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .ekstra-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ekstra-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ekstra-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .ekstra-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .ekstra-card:hover .ekstra-image {
+            transform: scale(1.05);
+        }
+
+        .ekstra-content {
+            padding: 20px;
+        }
+
+        .ekstra-content h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        /* Kegiatan Terprogram */
+        .kegiatan-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .kegiatan-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .kegiatan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kegiatan-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .kegiatan-content {
+            padding: 20px;
+        }
+
+        .kegiatan-content h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        /* Amaliyah */
+        .amaliyah-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .amaliyah-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .amaliyah-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .amaliyah-icon {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .amaliyah-card h3 {
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        /* Video Testimonials */
+        .video-testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-container {
+            position: relative;
+            height: 250px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .video-container:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--primary);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container:hover .video-play-btn {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-content h3 {
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        .video-role {
+            color: var(--primary);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials Text */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Maps Section */
+        .maps-section {
+            background: linear-gradient(135deg, #e6f7f3 0%, #e8f0fe 100%);
+            padding: 60px 0;
+        }
+
+        .maps-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .maps-info {
+            padding-right: 20px;
+        }
+
+        .maps-info h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .maps-info p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .maps-address {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .address-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .address-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .address-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .address-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .address-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .maps-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .map-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .map-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-btn i {
+            font-size: 18px;
+        }
+
+        .maps-embed {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 450px;
+        }
+
+        .maps-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-info i {
+            margin-top: 3px;
+            color: var(--primary);
+        }
+
+        .footer-links h3, .footer-programs h3, .footer-newsletter h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after, .footer-programs h3::after, .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links ul, .footer-programs ul {
+            list-style: none;
+        }
+
+        .footer-links ul li, .footer-programs ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a, .footer-programs ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover, .footer-programs ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* WhatsApp Button Improvements */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+            animation: none;
+        }
+
+        .whatsapp-float:active {
+            transform: scale(0.95);
+            transition: transform 0.1s ease;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* WhatsApp Tooltip */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 10px 0;
+        }
+
+        /* Video Lightbox Styles */
+        .video-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .video-lightbox-content {
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .video-lightbox-iframe {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-lightbox-iframe iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-lightbox-close:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .news-prestasi {
+                grid-template-columns: 1fr;
+            }
+            
+            .ekstrakurikuler-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .kegiatan-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-testimonials, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .maps-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .maps-info {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .profil-sekolah {
+                grid-template-columns: 1fr;
+            }
+            
+            .amaliyah-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .video-lightbox-content {
+                width: 95%;
+            }
+            
+            .maps-actions {
+                flex-direction: column;
+            }
+            
+            .map-btn {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .ekstrakurikuler-grid, .kegiatan-grid, .amaliyah-grid, 
+            .video-testimonials, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .video-play-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .maps-embed {
+                height: 300px;
+            }
+            
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="yasir-logo-removebg-preview.png" alt="Logo SMPIT Yasir" class="logo-image">
+                <div class="logo-text">SMPIT YASIR</div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#ekstrakurikuler">Ekstrakurikuler</a></li>
+                    <li><a href="#kegiatan">Kegiatan</a></li>
+                    <li><a href="#amaliyah">Amaliyah</a></li>
+                    <li><a href="#maps">Lokasi</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cta-button" id="ppdb-button">PPDB 2025</a>
+            <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <div class="hero-video-container">
+            <iframe class="hero-video" src="https://www.youtube.com/embed/kXw51bXmB1U?autoplay=1&mute=1&loop=1&playlist=kXw51bXmB1U&start=28&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>SMPIT YASIR</h1>
+            <p>Sekolah Menengah Pertama Islam Terpadu yang membentuk generasi Qur'ani, berakhlak mulia, dan berprestasi akademik tinggi. Kami berkomitmen mencetak pemimpin masa depan yang berkarakter Islami.</p>
+            <a href="#" class="cta-button" id="daftar-button">Daftar Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Berita & Prestasi -->
+    <section class="container" id="tentang">
+        <h2 class="section-title">Berita & Prestasi</h2>
+        <div class="news-prestasi">
+            <div class="main-content">
+                <div class="main-news">
+                    <div class="news-card" data-image="image spmb.jpg" data-caption="Pembukaan PPDB Tahun Ajaran 2026/2027">
+                        <div style="position: relative;">
+                            <img src="image spmb.jpg" alt="Pembukaan PPDB" class="news-image">
+                            <span class="news-badge">Berita</span>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar"></i> 15 Mei 2025</span>
+                                <span><i class="far fa-eye"></i> 548 pembaca</span>
+                            </div>
+                            <h3>Pembukaan PPDB Tahun Ajaran 2026/2027</h3>
+                            <p>SMPIT Yasir membuka pendaftaran peserta didik baru untuk tahun ajaran 2026/2027. Pendaftaran dibuka mulai 1 Juni 2025.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="prestasi-section">
+                    <h3 class="prestasi-title">Prestasi Terbaru</h3>
+                    <div class="prestasi-list">
+                        <div class="prestasi-item" data-image="image-prestasi.jpg" data-caption="Juara 2 Tahfidz juz 30 pada festival ummi 2024">
+                            <img src="image-prestasi.jpg" alt="Juara 2 tahfidz juz 30 pada festival ummi" class="prestasi-image">
+                            <div class="prestasi-text">
+                                <h4>Juara 2 tahfidz juz 30 pada festival ummi 2024</h4>
+                                <p>Siswi bernama Naura zalfa deanova meraih juara 2 pada festival ummi tangerang 2024.</p>
+                            </div>
+                        </div>
+                        <div class="prestasi-item" data-image="image-prestasi-tahfidz.jpg" data-caption="Juara 3 MHQ juz 30">
+                            <img src="image-prestasi-tahfidz.jpg" alt="Juara 3 MHQ juz 30" class="prestasi-image">
+                            <div class="prestasi-text">
+                                <h4>Juara 3 MHQ juz 30</h4> 
+                                <p>Siswi bernama Naura zalfa deanova smpit yasir meraih juara 3 MHQ festival pelajar pancasila Smk almu'in kota tangerang</p>
+                            </div>
+                        </div>
+                        <div class="prestasi-item" data-image="image-prestasi-futsal.jpg.jpg" data-caption="Kompetisi futsal antar sekolah">
+                            <img src="image-prestasi-futsal.jpg.jpg" alt="juara 3 futsal" class="prestasi-image">
+                            <div class="prestasi-text">
+                                <h4>juara 3 Kompetisi tournament futsal antar sekolah</h4>
+                                <p>Tim futsal SMPIT Yasir meraih peringkat 3 dalam kompetisi tournament futsal antar sekolah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-news">
+                <div class="side-news-item" data-image="image-prestasi-hadang.jpg" data-caption="kompetisi hadang portina">
+                    <img src="image-prestasi-hadang.jpg" alt="kompetisi hadang" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">19 juli 2024</div>
+                        <h4> Meraih Juara 3 dalam kompetisi hadang</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar-serah-terima.jpg" data-caption="dokumentasi serah terima jabatan osis smpit yasir 2025">
+                    <img src="gambar-serah-terima.jpg" alt="serah terima jabatan" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">17 februari 2025</div>
+                        <h4>Dokumentasi serah terima jabatan osis 2025</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="image pts.jpg" data-caption="proses pelaksanaan pts projek ganjil 2025">
+                    <img src="image pts.jpg" alt="sekolah" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">25 agustus-2 september 2025</div>
+                        <h4>Cegah dan lawan perundungan</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar-yasir-festival.jpg" data-caption="Acara puncak yasir festival 2024">
+                    <img src="gambar-yasir-festival.jpg" alt="yasir festival" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">19 November 2024</div>
+                        <h4>Acara puncak yasir festival 2024</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar.prestasi.jpg" data-caption="mengikuti lomba SAC junior challenge 2025">
+                    <img src="gambar.prestasi.jpg" alt="mengikuti lomba SAC junior challenge 2025" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">20 februari 2025</div>
+                        <h4>Mengikuti lomba SAC junior challenge 2025</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar-drama.jpg" data-caption="project drama tentang perjuangan kemerdekaan">
+                    <img src="gambar-drama.jpg" alt="Perjuanagan kemerdekaan" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">22 agustus 2023</div>
+                        <h4>Project drama smpit yasir memperingati hut RI ke-78</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar-yasir-festivall.jpg" data-caption="kegiatan yasir festival 2024">
+                    <img src="gambar-yasir-festivall.jpg" alt="Yasir festival" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">19 November 2024</div>
+                        <h4>Acara pembuka yasir festival</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar-serah-terima-jabatan.jpg" data-caption="Serah terima jabatan OSIS SMPIT Yasir 2023/2024">
+                    <img src="gambar-serah-terima-jabatan.jpg" alt="Serah terima jabatan osis" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">3 februari 2023</div>
+                        <h4>Serah terima jabatan OSIS SMPIT Yasir 2023/2024</h4>
+                    </div>
+                </div>
+                <div class="side-news-item" data-image="gambar-market-day.jpg" data-caption="market day smpit yasir 2022">
+                    <img src="gambar-market-day.jpg" alt="Market day" class="side-news-image">
+                    <div class="side-news-content">
+                        <div class="side-news-date">6 oktober 2022</div>
+                        <h4>Kreatifitas berwirausaha yang islami</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <li><a href="berita.html">lihat semua berita</a></li>
+    </section>
+
+    <!-- Profil Sekolah -->
+    <section class="container">
+        <h2 class="section-title">Profil Sekolah</h2>
+        <div class="profil-sekolah">
+            <div class="profil-content">
+                <span class="profil-badge">Profil Sekolah</span>
+                <h2>Membentuk Generasi Qur'ani & Berprestasi</h2>
+                <p>SMPIT Yasir adalah sekolah menengah pertama Islam terpadu yang berkomitmen untuk mencetak generasi Qur'ani yang berakhlak mulia, berprestasi akademik, dan memiliki karakter Islami yang kuat. Kami mengintegrasikan kurikulum nasional dengan nilai-nilai Islam dalam setiap aspek pembelajaran.</p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-count="48">0+</div>
+                        <div class="stat-text">Siswa Aktif</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-count="28">0+</div>
+                        <div class="stat-text">Prestasi Diraih</div>
+                    </div>
+                </div>
+            </div>
+            <div class="profil-slider">
+                <div class="slider-container">
+                    <div class="slider" id="image-slider">
+                        <div class="slide" data-image="gambar-tentang-yasir.jpg" data-caption="Tentang  SMPIT Yasir - Tempat belajar yang nyaman dan islami">
+                            <img src="gambar-tentang-yasir.jpg" alt="SMPIT Yasir">
+                            <div class="slide-overlay">Tentang SMPIT Yasir</div>
+                        </div>
+                        <div class="slide" data-image="BENNER-SMPIT-osis-min.jpg" data-caption="Kegiatan OSIS SMPIT Yasir - Mengembangkan bakat kepemimpinan siswa">
+                            <img src="BENNER-SMPIT-osis-min.jpg" alt="OSIS SMPIT">
+                            <div class="slide-overlay">Kegiatan OSIS SMPIT Yasir</div>
+                        </div>
+                        <div class="slide" data-image="image khatmul qur an.jpg" data-caption="Kegiatan Tartil Tahfidz - Siswa sedang mengikuti program tahfidz juz 29 & 30">
+                            <img src="image khatmul qur an.jpg" alt="Kegiatan Siswa">
+                            <div class="slide-overlay">Tartil Tahfidz juz 29 & 30</div>
+                        </div>
+                    </div>
+                    <div class="slider-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ekstrakurikuler -->
+    <section class="container" id="ekstrakurikuler">
+        <h2 class="section-title">Ekstrakurikuler</h2>
+        <div class="ekstrakurikuler-grid">
+            <div class="ekstra-card" data-image="image beladiri.jpg" data-caption="Ekstrakurikuler Karate - Mengembangkan kemampuan beladiri, disiplin, dan percaya diri melalui latihan karate">
+                <img src="image beladiri.jpg" alt="Karate" class="ekstra-image">
+                <div class="ekstra-content">
+                    <h3>Beladiri Karate</h3>
+                    <p>Mengembangkan kemampuan beladiri, disiplin, dan percaya diri melalui latihan karate.</p>
+                </div>
+            </div>
+            <div class="ekstra-card" data-image="gambar-ekskul-pramuka.jpg" data-caption="Ekstrakurikuler Pramuka - Membentuk karakter kepemimpinan, kemandirian, dan kecintaan terhadap alam">
+                <img src="gambar-ekskul-pramuka.jpg" alt="Pramuka" class="ekstra-image">
+                <div class="ekstra-content">
+                    <h3>Pramuka</h3>
+                    <p>Membentuk karakter kepemimpinan islam, kemandirian, dan kecintaan terhadap alam.</p>
+                </div>
+            </div>
+            <div class="ekstra-card" data-image="image futsal.jpg.jpg" data-caption="Ekstrakurikuler Futsal - Mengasah kemampuan olahraga tim, kerjasama, dan sportivitas melalui futsal">
+                <img src="image futsal.jpg.jpg" alt="Futsal" class="ekstra-image">
+                <div class="ekstra-content">
+                    <h3>Futsal</h3>
+                    <p>Mengasah kemampuan olahraga tim, kerjasama, dan sportivitas melalui futsal.</p>
+                </div>
+            </div>
+            <div class="ekstra-card" data-image="gambar-memanah.jpg" data-caption="Ekstrakurikuler Memanah - Melatih fokus, konsentrasi, dan ketenangan melalui olahraga memanah">
+                <img src="gambar-memanah.jpg" alt="Memanah" class="ekstra-image">
+                <div class="ekstra-content">
+                    <h3>Memanah</h3>
+                    <p>Melatih fokus, konsentrasi, dan ketenangan melalui olahraga memanah.</p>
+                </div>
+            </div>
+            <div class="ekstra-card" data-image="gambar-public-speaking.jpg" data-caption="Ekstrakurikuler Public Speaking - Mengembangkan kemampuan berbicara di depan umum dan percaya diri">
+                <img src="gambar-public-speaking.jpg" alt="Public Speaking" class="ekstra-image">
+                <div class="ekstra-content">
+                    <h3>Public Speaking</h3>
+                    <p>Mengembangkan kemampuan berbicara di depan umum dan percaya diri.</p>
+                </div>
+            </div>
+            <div class="ekstra-card" data-image="image nari.jpg" data-caption="Ekstrakurikuler Seni Menari - Mengembangkan kreativitas, ekspresi diri, dan apresiasi seni melalui tari">
+                <img src="image nari.jpg" alt="Seni Menari" class="ekstra-image">
+                <div class="ekstra-content">
+                    <h3>Seni Menari</h3>
+                    <p>Mengembangkan kreativitas, ekspresi diri, dan apresiasi seni melalui tari.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Kegiatan Terprogram -->
+    <section class="container" id="kegiatan">
+        <h2 class="section-title">Kegiatan Terprogram</h2>
+        <div class="kegiatan-grid">
+            <div class="kegiatan-card" data-image="gambar outing class.jpg" data-caption="Outing Class - Pembelajaran di luar kelas untuk memperkaya pengalaman belajar">
+                <img src="gambar outing class.jpg" alt="Outing Class" class="kegiatan-image">
+                <div class="kegiatan-content">
+                    <h3>Outing Class</h3>
+                    <p>Pembelajaran di luar kelas untuk memperkaya pengalaman belajar siswa.</p>
+                </div>
+            </div>
+            <div class="kegiatan-card" data-image="gambar-pesantren-ramadhan.jpg" data-caption="Pesantren Ramadhan - Program intensif untuk meningkatkan ibadah dan pemahaman agama">
+                <img src="gambar-pesantren-ramadhan.jpg" alt="Pesantren Ramadhan" class="kegiatan-image">
+                <div class="kegiatan-content">
+                    <h3>Pesantren Ramadhan</h3>
+                    <p>Program bulan Ramadhan untuk meningkatkan karakter muslim dalam ibadah dan pemahaman agama islam.</p>
+                </div>
+            </div>
+            <div class="kegiatan-card" data-image="image bazzar.jpg" data-caption="Bazaar oleh Siswa - Kegiatan kewirausahaan untuk melatih jiwa entrepreneur">
+                <img src="image bazzar.jpg" alt="Bazaar" class="kegiatan-image">
+                <div class="kegiatan-content">
+                    <h3>Bazaar oleh Siswa</h3>
+                    <p>Kegiatan kewirausahaan siswa untuk melatih jiwa entrepreneur.</p>
+                </div>
+            </div>
+            <div class="kegiatan-card" data-image="image mentoring agama.jpg" data-caption="Mentoring Agama - Pembinaan agama secara intensif untuk memperdalam pemahaman keislaman">
+                <img src="image mentoring agama.jpg" alt="Mentoring Agama" class="kegiatan-image">
+                <div class="kegiatan-content">
+                    <h3>Mentoring Agama</h3>
+                    <p>Pembinaan agama secara intensif untuk memperdalam pemahaman keislaman serta bahasa arab.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Program Amaliyah -->
+    <section class="container" id="amaliyah">
+        <h2 class="section-title">Program Amaliyah</h2>
+        <div class="amaliyah-grid">
+            <div class="amaliyah-card">
+                <div class="amaliyah-icon"><i class="fas fa-sun"></i></div>
+                <h3>Sholat Dhuha</h3>
+            </div>
+            <div class="amaliyah-card">
+                <div class="amaliyah-icon"><i class="fas fa-pray"></i></div>
+                <h3>Sholat Dzuhur</h3>
+            </div>
+            <div class="amaliyah-card">
+                <div class="amaliyah-icon"><i class="fas fa-mosque"></i></div>
+                <h3>Sholat Ashar</h3>
+            </div>
+            <div class="amaliyah-card">
+                <div class="amaliyah-icon"><i class="fas fa-book-open"></i></div>
+                <h3>Hafalan Doa Harian</h3>
+            </div>
+            <div class="amaliyah-card">
+                <div class="amaliyah-icon"><i class="fas fa-microphone"></i></div>
+                <h3>Tausiyah Pagi</h3>
+            </div>
+            <div class="amaliyah-card">
+                <div class="amaliyah-icon"><i class="fas fa-hands-praying"></i></div>
+                <h3>Dzikir Pagi & Petang</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maps Section -->
+    <section class="maps-section" id="maps">
+        <div class="container">
+            <h2 class="section-title">Lokasi Kami</h2>
+            <div class="maps-container">
+                <div class="maps-info">
+                    <h2>Temukan SMPIT Yasir</h2>
+                    <p>SMPIT Yasir berlokasi di kawasan strategis yang mudah dijangkau dari berbagai penjuru kota. Kami dengan senang hati menyambut kunjungan Anda untuk melihat langsung fasilitas dan kegiatan pembelajaran di sekolah kami.</p>
+                    
+                    <div class="maps-address">
+                        <div class="address-item">
+                            <div class="address-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="address-text">
+                                <h4>Alamat Lengkap</h4>
+                                <p>Jl. Maulana Hasanudin No.67, RT.002/RW.003, Cipondoh Makmur, Kec. Tangerang, Kota Tangerang, Banten 15148</p>
+                            </div>
+                        </div>
+                        <div class="address-item">
+                            <div class="address-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="address-text">
+                                <h4>Jam Operasional</h4>
+                                <p>Senin s/d Jumat: 07.00 -16.00<br>Atau klik ikon WA di pojok kanan bawah</p>
+                            </div>
+                        </div>
+                        <div class="address-item">
+                            <div class="address-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="address-text">
+                                <h4>Telepon</h4>
+                                <p>(+62) 819-7370-7789</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="maps-actions">
+                        <a href="https://www.google.com/maps/dir//SMPIT+YASIR/data=!4m8!4m7!1m0!1m5!1m1!1s0x2e69f9135bbbfea1:0xc6c6b48aaa2aa4f0!2m2!1d106.6753098!2d-6.1802158" class="map-btn" target="_blank">
+                            <i class="fas fa-route"></i>
+                            Dapatkan Rute
+                        </a>
+                        <a href="https://www.google.com/maps/place/SMPIT+YASIR/@-6.1802158,106.6753098,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f9135bbbfea1:0xc6c6b48aaa2aa4f0!8m2!3d-6.1802158!4d106.6753098!16s%2Fg%2F11s7_5m_3t?entry=ttu" class="map-btn" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            Buka di Google Maps
+                        </a>
+                    </div>
+                </div>
+                <div class="maps-embed">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.630281589468!2d106.67530981020765!3d-6.180215793781383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f9135bbbfea1%3A0xc6c6b48aaa2aa4f0!2sSMPIT%20YASIR!5e0!3m2!1sid!2sid!4v1760432042872!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials -->
+    <section class="container">
+        <h2 class="section-title">Suara Keluarga</h2>
+        <div class="video-testimonials">
+        <div class="video-card">
+                <div class="video-container" data-video="kXw51bXmB1U" data-start="0" data-end="30">
+                    <img src="https://img.youtube.com/vi/kXw51bXmB1U/maxresdefault.jpg" alt="Testimoni Kepala Sekolah" class="video-thumbnail">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-content">
+                    <h3>Ust. Ahmad Fauzi</h3>
+                    <div class="video-role">Kepala Sekolah</div>
+                    <p>"SMPIT Yasir berkomitmen untuk mencetak generasi Qur'ani yang berakhlak mulia dan berprestasi akademik."</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-container" data-video="kXw51bXmB1U" data-start="0" data-end="30">
+                    <img src="https://img.youtube.com/vi/kXw51bXmB1U/maxresdefault.jpg" alt="Testimoni Orang Tua" class="video-thumbnail">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-content">
+                    <h3>Ibu Dewi Lestari</h3>
+                    <div class="video-role">Orang Tua Siswa</div>
+                    <p>"Anak saya berkembang sangat positif di SMPIT Yasir, baik dari segi akademik maupun akhlaknya."</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-container" data-video="kXw51bXmB1U" data-start="0" data-end="30">
+                    <img src="https://img.youtube.com/vi/kXw51bXmB1U/maxresdefault.jpg" alt="Testimoni Siswa" class="video-thumbnail">
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-content">
+                    <h3>Sarah Nurhaliza</h3>
+                    <div class="video-role">Siswa Kelas 8</div>
+                    <p>"Saya sangat senang belajar di SMPIT Yasir karena guru-gurunya ramah dan metode pembelajarannya menyenangkan."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Text -->
+    <section class="container">
+        <h2 class="section-title">Kata alumni dari SMPIT Yasir</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Semasa sekolah di SMPIT YASIR adalah salah satu waktu paling bahagia. dan disinilah saya belajar banyak hal bukan hanya tentang pelajaran, tetapi juga tentang arti persahabatan, kerja sama, dan tanggung jawab.
+Bersama teman-teman kami melewati suka dan duka, tertawa bersama,lelah bersama, terkadang kita selalu bersama untuk menghadapi masalah maupun berat dan ringan selalu dihadapi bersama, meninggalkan kenangan yang tak akan terlupakan."
+                </div>
+                <div class="testimonial-author">
+                    <img src="gambar-abdul-halim.jpg" alt="Abdul halim" class="author-image">
+                    <div class="author-info">
+                        <h4>Abdul halim</h4>
+                        <p>Alumni 2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Pendidikan di SMPIT Yasir memberikan fondasi yang sangat kuat untuk masa depan saya. Selama belajar di sana, saya tidak hanya dibekali ilmu akademik, tetapi juga karakter dan kedisiplinan. Ketika melanjutkan ke jenjang selanjutnya, saya benar-benar merasakan manfaatnya — mampu beradaptasi, berpikir kritis, dan bersaing dengan siswa dari berbagai sekolah.."
+                </div>
+                <div class="testimonial-author">
+                    <img src="image-abid.jpg" alt="muhamad abid" class="author-image">
+                    <div class="author-info">
+                        <h4>Muhamad abid</h4>
+                        <p>Alumni 2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Kesan dan pesan untuk Yasir sekolah ku tercinta kesannya adalah Yasir bukan lah sekedar sekolahan biasa, tapi Yasir adalah rumah yg benar benar banyak kenangan untuk saya mulai dari suka maupun duka dan pesan dari saya mungkin terimakasih atas semuanya, berkat sekolahan ini dan juga para guru disana saya ingin berterima kasih tanpa mereka saya tidak akan bisa Sampi kejenjang yg lebih tinggi terimakasih atas semuanya."
+                </div>
+                <div class="testimonial-author">
+                    <img src="gambar-aby.jpg" alt="Gambar-aby" class="author-image">
+                    <div class="author-info">
+                        <h4>Muhamad Aby</h4>
+                        <p>Alumni 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">SMPIT YASIR</div>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Maulana Hasanudin No.67, RT.002/RW.003, Cipondoh Makmur, Kec. Tangerang, Kota Tangerang, Banten 15148</p>
+                    <p><i class="fas fa-phone"></i> (+62) 819-7370-7789 </p>
+                    <p><i class="fas fa-envelope"></i>smpityasir.tangerang1989@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/smpit_yasir?igsh=MWFycWk5eXpwbnliZQ=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@smpityasir?si=sHlYjOaF3JcxnBbP"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Menu Cepat</h3>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#ekstrakurikuler">Ekstrakurikuler</a></li>
+                        <li><a href="#kegiatan">Kegiatan</a></li>
+                        <li><a href="#amaliyah">Amaliyah</a></li>
+                        <li><a href="#maps">Lokasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-programs">
+                    <h3>Program</h3>
+                    <ul>
+                        <li><a href="#">PPDB 2025</a></li>
+                        <li><a href="#">Program Tahfidz</a></li>
+                        <li><a href="#">Kegiatan Terprogram</a></li>
+                        <li><a href="#">Kelas Unggulan</a></li>
+                        <li><a href="#">Program Mentoring</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Dapatkan informasi terbaru tentang kegiatan dan program SMPIT Yasir</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Email Anda" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 SMPIT Yasir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" class="whatsapp-float" id="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Hubungi kami via WhatsApp</span>
+    </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightbox-image">
+            <button class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Video Lightbox -->
+    <div class="video-lightbox" id="video-lightbox">
+        <div class="video-lightbox-content">
+            <div class="video-lightbox-iframe" id="video-lightbox-iframe">
+                <!-- YouTube iframe akan dimasukkan di sini secara dinamis -->
+            </div>
+            <button class="video-lightbox-close" id="video-lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp Integration yang Diperbaiki
+        const whatsappFloat = document.getElementById('whatsapp-float');
+        const ppdbButton = document.getElementById('ppdb-button');
+        const daftarButton = document.getElementById('daftar-button');
+
+        // Nomor WhatsApp dan pesan yang diperbaiki
+        const whatsappNumber = '6281973707789';
+        const defaultMessage = 'Assalamualaikum, saya ingin bertanya lebih lanjut tentang SMPIT Yasir';
+
+        // Fungsi untuk membuka WhatsApp dengan pesan yang sudah ditentukan
+        function openWhatsApp(message = defaultMessage) {
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Cek jika di perangkat mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Untuk mobile, buka langsung aplikasi WhatsApp
+                window.location.href = whatsappUrl;
+            } else {
+                // Untuk desktop, buka di tab baru
+                window.open(whatsappUrl, '_blank');
+            }
+            
+            // Track event (opsional untuk analytics)
+            console.log('WhatsApp clicked - Number:', whatsappNumber, 'Message:', message);
+        }
+
+        // Event Listeners untuk WhatsApp Float
+        if (whatsappFloat) {
+            whatsappFloat.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Animasi feedback
+                this.style.transform = 'scale(0.95)';
+                
+                // Buka WhatsApp langsung
+                openWhatsApp();
+                
+                // Reset animasi setelah 150ms
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        }
+
+        // Event Listener untuk PPDB Button
+        if (ppdbButton) {
+            ppdbButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Animasi feedback
+                this.style.transform = 'scale(0.98)';
+                
+                // Buka WhatsApp dengan pesan khusus PPDB
+                const ppdbMessage = 'Assalamualaikum, saya ingin bertanya tentang PPDB 2025 di SMPIT Yasir';
+                openWhatsApp(ppdbMessage);
+                
+                // Reset animasi setelah 150ms
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        }
+
+        // Event Listener untuk Daftar Sekarang Button
+        if (daftarButton) {
+            daftarButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Animasi feedback
+                this.style.transform = 'scale(0.98)';
+                
+                // Buka WhatsApp dengan pesan khusus pendaftaran
+                const daftarMessage = 'Assalamualaikum, saya ingin mendaftar ke SMPIT Yasir dan butuh informasi lebih lanjut';
+                openWhatsApp(daftarMessage);
+                
+                // Reset animasi setelah 150ms
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenuToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+
+        // Header Shadow on Scroll
+        const header = document.getElementById('header');
+        
+        if (header) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        if (mobileMenuToggle) {
+                            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Image Slider
+        const slider = document.getElementById('image-slider');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        const slideCount = 3;
+        let slideInterval;
+        
+        function showSlide(index) {
+            if (index >= slideCount) index = 0;
+            if (index < 0) index = slideCount - 1;
+            
+            if (slider) {
+                slider.style.transform = `translateX(-${index * 100}%)`;
+            }
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[index]) {
+                dots[index].classList.add('active');
+            }
+            
+            currentSlide = index;
+        }
+        
+        // Initialize slider
+        function initSlider() {
+            if (slider && dots.length > 0) {
+                // Auto slide every 3 seconds
+                slideInterval = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 3000);
+                
+                // Dot navigation
+                dots.forEach(dot => {
+                    dot.addEventListener('click', function() {
+                        const slideIndex = parseInt(this.getAttribute('data-slide'));
+                        showSlide(slideIndex);
+                        // Reset interval when manually changing slides
+                        clearInterval(slideInterval);
+                        slideInterval = setInterval(() => {
+                            showSlide(currentSlide + 1);
+                        }, 3000);
+                    });
+                });
+            }
+        }
+        
+        // Initialize slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initSlider);
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+        let countersAnimated = false;
+        
+        function animateCounter(counter) {
+            const target = parseInt(counter.getAttribute('data-count'));
+            const count = parseInt(counter.innerText);
+            const increment = Math.ceil(target / speed);
+            
+            if (count < target) {
+                counter.innerText = count + increment;
+                setTimeout(() => animateCounter(counter), 1);
+            } else {
+                counter.innerText = target + '+';
+            }
+        }
+        
+        // Intersection Observer for counter animation
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {         
+                    counters.forEach(counter => {
+                        if (counter.innerText === '0+') {
+                            animateCounter(counter);
+                        }
+                    });
+                    countersAnimated = true;
+                }
+            });
+        }, observerOptions);
+        
+        // Observe the stats section
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Newsletter Form Submission
+        const newsletterForm = document.getElementById('newsletter-form');
+        
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Terima kasih! Anda telah berlangganan newsletter SMPIT Yasir.');
+                this.reset();
+            });
+        }
+
+        // Card Animation on Scroll
+        const cards = document.querySelectorAll('.news-card, .ekstra-card, .kegiatan-card, .amaliyah-card, .video-card, .testimonial-card');
+        
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Initialize cards with hidden state
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            cardObserver.observe(card);
+        });
+
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        
+        // Function to open lightbox
+        function openLightbox(imageSrc, caption) {
+            if (lightboxImage && lightboxCaption) {
+                lightboxImage.src = imageSrc;
+                lightboxCaption.textContent = caption;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+            }
+        }
+        
+        // Function to close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Add click event to all image elements that should open lightbox
+        document.querySelectorAll('.news-card, .prestasi-item, .side-news-item, .slide, .ekstra-card, .kegiatan-card').forEach(element => {
+            element.addEventListener('click', function() {
+                const imageSrc = this.getAttribute('data-image');
+                const caption = this.getAttribute('data-caption');
+                if (imageSrc) {
+                    openLightbox(imageSrc, caption);
+                }
+            });
+        });
+        
+        // Close lightbox when clicking the close button
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+        }
+        
+        // Close lightbox when clicking outside the image
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+        
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // Video Lightbox Functionality
+        const videoLightbox = document.getElementById('video-lightbox');
+        const videoLightboxIframe = document.getElementById('video-lightbox-iframe');
+        const videoLightboxClose = document.getElementById('video-lightbox-close');
+        
+        // Function to open video lightbox
+        function openVideoLightbox(videoId, startTime, endTime) {
+            if (videoLightboxIframe) {
+                // Membuat URL embed YouTube dengan parameter waktu
+                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&start=${startTime}&end=${endTime}&rel=0&modestbranding=1`;
+                
+                // Membuat iframe untuk video YouTube
+                const iframe = document.createElement('iframe');
+                iframe.src = embedUrl;
+                iframe.allow = 'autoplay; encrypted-media';
+                iframe.allowFullscreen = true;
+                
+                // Mengosongkan dan menambahkan iframe baru
+                videoLightboxIframe.innerHTML = '';
+                videoLightboxIframe.appendChild(iframe);
+                
+                // Menampilkan lightbox
+                videoLightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when video lightbox is open
+            }
+        }
+        
+        // Function to close video lightbox
+        function closeVideoLightbox() {
+            videoLightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            // Menghentikan video dengan mengosongkan iframe
+            setTimeout(() => {
+                if (videoLightboxIframe) {
+                    videoLightboxIframe.innerHTML = '';
+                }
+            }, 300);
+        }
+        
+        // Add click event to all video containers
+        document.querySelectorAll('.video-container').forEach(container => {
+            container.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video');
+                const startTime = this.getAttribute('data-start');
+                const endTime = this.getAttribute('data-end');
+                
+                if (videoId) {
+                    openVideoLightbox(videoId, startTime, endTime);
+                }
+            });
+        });
+        
+        // Close video lightbox when clicking the close button
+        if (videoLightboxClose) {
+            videoLightboxClose.addEventListener('click', closeVideoLightbox);
+        }
+        
+        // Close video lightbox when clicking outside the video
+        if (videoLightbox) {
+            videoLightbox.addEventListener('click', function(e) {
+                if (e.target === videoLightbox) {
+                    closeVideoLightbox();
+                }
+            });
+        }
+        
+        // Close video lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoLightbox && videoLightbox.classList.contains('active')) {
+                closeVideoLightbox();
+            }
+        });
+
+        // Clean up intervals when page is unloaded
+        window.addEventListener('beforeunload', function() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+            }
+        });
+    </script>
+</body>
+</html>
