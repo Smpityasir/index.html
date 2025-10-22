@@ -1891,134 +1891,51 @@ Bersama teman-teman kami melewati suka dan duka, tertawa bersama,lelah bersama, 
     </div>
 
     <script>
-      // WhatsApp Integration yang Diperbaiki
-const whatsappFloat = document.getElementById('whatsapp-float');
-const ppdbButton = document.getElementById('ppdb-button');
-const daftarButton = document.getElementById('daftar-button');
-
-// Nomor WhatsApp dan pesan yang diperbaiki
-const whatsappNumber = '6281973707789';
-const defaultMessage = 'Assalamualaikum, saya ingin bertanya tentang SMPIT Yasir';
-
-// Fungsi untuk membuka WhatsApp dengan fallback
-function openWhatsApp(message = defaultMessage) {
-    // Potong pesan jika terlalu panjang
-    const truncatedMessage = message.length > 100 ? message.substring(0, 100) + '...' : message;
-    const encodedMessage = encodeURIComponent(truncatedMessage);
+          // WhatsApp Integration - Simple Version for GitHub Pages
+document.addEventListener('DOMContentLoaded', function() {
+    const whatsappNumber = '6281973707789';
     
-    // Multiple WhatsApp URL options dengan fallback
-    const whatsappUrls = [
-        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-        `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`,
-        `https://web.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`
-    ];
+    // Fungsi sederhana untuk buka WhatsApp
+    function openWhatsApp(message) {
+        const encodedMessage = encodeURIComponent(message);
+        const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+        window.open(url, '_blank');
+    }
     
-    // Coba buka WhatsApp dengan URL pertama, jika gagal coba yang lain
-    const openWhatsAppWindow = (urlIndex = 0) => {
-        if (urlIndex >= whatsappUrls.length) {
-            console.error('Semua URL WhatsApp gagal');
-            return;
-        }
+    // Setup untuk floating button
+    const whatsappFloat = document.getElementById('whatsapp-float');
+    if (whatsappFloat) {
+        whatsappFloat.addEventListener('click', function(e) {
+            e.preventDefault();
+            openWhatsApp('Assalamualaikum, saya ingin bertanya tentang SMPIT Yasir');
+        });
         
-        const newWindow = window.open(whatsappUrls[urlIndex], '_blank');
-        
-        // Cek jika window berhasil dibuka
-        setTimeout(() => {
-            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                // Jika gagal, coba URL berikutnya
-                openWhatsAppWindow(urlIndex + 1);
-            }
-        }, 500);
-    };
+        // Tambahkan href sebagai fallback
+        whatsappFloat.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent('Assalamualaikum, saya ingin bertanya tentang SMPIT Yasir')}`;
+    }
     
-    // Mulai dengan URL pertama
-    openWhatsAppWindow(0);
+    // Setup untuk PPDB button
+    const ppdbButton = document.getElementById('ppdb-button');
+    if (ppdbButton) {
+        ppdbButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            openWhatsApp('Assalamualaikum, saya ingin bertanya tentang PPDB 2025 di SMPIT Yasir');
+        });
+        
+        ppdbButton.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent('Assalamualaikum, saya ingin bertanya tentang PPDB 2025 di SMPIT Yasir')}`;
+    }
     
-    // Track event (opsional untuk analytics)
-    console.log('WhatsApp clicked - Number:', whatsappNumber, 'Message:', truncatedMessage);
-}
-
-// Event Listeners untuk WhatsApp Float
-if (whatsappFloat) {
-    whatsappFloat.addEventListener('click', function(e) {
-        e.preventDefault();
+    // Setup untuk daftar button
+    const daftarButton = document.getElementById('daftar-button');
+    if (daftarButton) {
+        daftarButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            openWhatsApp('Assalamualaikum, saya ingin mendaftar ke SMPIT Yasir dan butuh informasi lebih lanjut');
+        });
         
-        // Animasi feedback
-        this.style.transform = 'scale(0.95)';
-        
-        // Buka WhatsApp langsung
-        openWhatsApp();
-        
-        // Reset animasi setelah 150ms
-        setTimeout(() => {
-            this.style.transform = '';
-        }, 150);
-    });
-}
-
-// Event Listener untuk PPDB Button
-if (ppdbButton) {
-    ppdbButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Animasi feedback
-        this.style.transform = 'scale(0.98)';
-        
-        // Buka WhatsApp dengan pesan khusus PPDB
-        const ppdbMessage = 'Assalamualaikum, saya ingin bertanya tentang PPDB 2025 di SMPIT Yasir';
-        openWhatsApp(ppdbMessage);
-        
-        // Reset animasi setelah 150ms
-        setTimeout(() => {
-            this.style.transform = '';
-        }, 150);
-    });
-}
-
-// Event Listener untuk Daftar Sekarang Button
-if (daftarButton) {
-    daftarButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Animasi feedback
-        this.style.transform = 'scale(0.98)';
-        
-        // Buka WhatsApp dengan pesan khusus pendaftaran
-        const daftarMessage = 'Assalamualaikum, saya ingin mendaftar ke SMPIT Yasir';
-        openWhatsApp(daftarMessage);
-        
-        // Reset animasi setelah 150ms
-        setTimeout(() => {
-            this.style.transform = '';
-        }, 150);
-    });
-}
-
-        // Mobile Menu Toggle
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        
-        if (mobileMenuToggle && navMenu) {
-            mobileMenuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                mobileMenuToggle.innerHTML = navMenu.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-        }
-
-        // Header Shadow on Scroll
-        const header = document.getElementById('header');
-        
-        if (header) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        }
+        daftarButton.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent('Assalamualaikum, saya ingin mendaftar ke SMPIT Yasir dan butuh informasi lebih lanjut')}`;
+    }
+});
 
         // Smooth Scrolling for Navigation Links
         document.querySelectorAll('nav a').forEach(anchor => {
